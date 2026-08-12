@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JyotiStore.in — Recharge in 10 Seconds</title>
+<meta name="description" content="JyotiStore.in — mobile recharge, best prepaid plans and instant offers for Jio, Airtel, Vi and BSNL.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#top" class="logo">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="30" height="30">
+          <circle cx="20" cy="20" r="18" fill="var(--dusk)"/>
+          <path d="M21 8 L13 22 L19 22 L17 32 L28 17 L21 17 Z" fill="var(--volt)"/>
+        </svg>
+      </span>
+      JyotiStore<span class="logo-dot">.in</span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#recharge">Recharge</a>
+      <a href="#plans">Plans</a>
+      <a href="#offers">Offers</a>
+      <a href="#billpay">Bill Pay</a>
+      <a href="#why">Why Us</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="search-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input type="text" id="searchInput" placeholder="Search plans — ₹299, 2GB…" aria-label="Search plans">
+      </div>
+      <button class="hist-btn" id="histToggle" aria-label="Open recharge history">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 4v5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 7v5l4 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="hist-count" id="histCount">0</span>
+      </button>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="top"></div>
+
+<!-- ================= HERO + QUICK RECHARGE ================= -->
+<section class="hero" id="recharge">
+  <div class="hero-text">
+    <p class="eyebrow">फुल टॉकटाइम • Zero Wait</p>
+    <h1>Recharge in 10 seconds,<br> talk all <span>day</span>.</h1>
+    <p class="hero-sub">Jio, Airtel, Vi, BSNL — sab operators ek jagah. Best plans, turant cashback offers, seedha aapke number pe.</p>
+    <div class="hero-trust">
+      <span>⚡ Instant activation</span>
+      <span>🔒 100% secure</span>
+      <span>💸 Cashback on every recharge</span>
+    </div>
+  </div>
+
+  <div class="recharge-card" id="rechargeCard">
+    <!-- FORM STATE -->
+    <div id="rechargeForm">
+      <h3>Quick Recharge</h3>
+      <div class="operator-picker" id="operatorPicker">
+        <button class="op-btn active" data-op="jio" style="--op-color:#1E40AF">J<small>Jio</small></button>
+        <button class="op-btn" data-op="airtel" style="--op-color:#DC2626">A<small>Airtel</small></button>
+        <button class="op-btn" data-op="vi" style="--op-color:#7C3AED">V<small>Vi</small></button>
+        <button class="op-btn" data-op="bsnl" style="--op-color:#059669">B<small>BSNL</small></button>
+      </div>
+
+      <label class="field-label" for="mobileNumber">Mobile number</label>
+      <input type="tel" id="mobileNumber" class="field-input" placeholder="98XXXXXXXX" maxlength="10" inputmode="numeric" autocomplete="off">
+      <p class="field-error" id="numberError"></p>
+
+      <label class="field-label" for="amountInput">Amount</label>
+      <input type="number" id="amountInput" class="field-input" placeholder="e.g. 299" min="10">
+      <p class="field-error" id="amountError"></p>
+
+      <button class="btn btn-primary recharge-submit" id="rechargeBtn">Recharge Now</button>
+      <p class="recharge-note">Demo preview — real payment gateway integration coming soon.</p>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div id="rechargeSuccess" class="recharge-success" hidden>
+      <div class="success-check" aria-hidden="true">✓</div>
+      <h3>Recharge Successful</h3>
+      <div class="receipt-grid">
+        <div><span>Operator</span><strong id="rsOperator">—</strong></div>
+        <div><span>Number</span><strong id="rsNumber">—</strong></div>
+        <div><span>Amount</span><strong id="rsAmount">—</strong></div>
+        <div><span>Validity</span><strong id="rsValidity">—</strong></div>
+        <div><span>Data</span><strong id="rsData">—</strong></div>
+        <div><span>Txn ID</span><strong id="rsTxn">—</strong></div>
+      </div>
+      <button class="btn btn-ghost" id="newRechargeBtn">New Recharge</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OFFERS TICKER ================= -->
+<section class="offers-ticker" id="offers">
+  <div class="ticker-label">
+    <span>⚡ LIVE OFFERS</span>
+    <small>updated every hour</small>
+  </div>
+  <div class="ticker-track-wrap">
+    <div class="ticker-track" id="tickerTrack">
+      <span>Recharge ₹299+ &amp; get ₹20 cashback</span>
+      <span>Refer a friend, get ₹50</span>
+      <span>First recharge: extra 1GB data free</span>
+      <span>Pay via UPI &amp; save 2%</span>
+      <span>BSNL ₹187 pack — lowest price guaranteed</span>
+      <span>Recharge 2 numbers, get ₹10 extra cashback</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PLANS ================= -->
+<section class="plans" id="plans">
+  <h2>Popular Recharge Plans</h2>
+  <p class="section-sub">Apna operator chuno, sahi plan turant milega.</p>
+
+  <div class="op-tabs" id="opTabs">
+    <button class="op-tab active" data-op="all">All</button>
+    <button class="op-tab" data-op="jio">Jio</button>
+    <button class="op-tab" data-op="airtel">Airtel</button>
+    <button class="op-tab" data-op="vi">Vi</button>
+    <button class="op-tab" data-op="bsnl">BSNL</button>
+  </div>
+
+  <div class="plan-grid" id="planGrid"><!-- injected by JS --></div>
+</section>
+
+<!-- ================= BILL PAY ================= -->
+<section class="billpay" id="billpay">
+  <h2>Bills &amp; More</h2>
+  <p class="section-sub">Recharge ke alawa, aur bhi bahut kuch — ek hi jagah.</p>
+  <div class="bill-grid">
+    <button class="bill-card" data-live="true" data-target="#recharge">
+      <span class="bill-icon">📱</span> Mobile Recharge <em class="bill-badge live">Live</em>
+    </button>
+    <button class="bill-card" data-live="true" data-target="#recharge">
+      <span class="bill-icon">📺</span> DTH Recharge <em class="bill-badge live">Live</em>
+    </button>
+    <button class="bill-card" data-live="false">
+      <span class="bill-icon">💡</span> Electricity Bill <em class="bill-badge">Coming Soon</em>
+    </button>
+    <button class="bill-card" data-live="false">
+      <span class="bill-icon">📡</span> Broadband Bill <em class="bill-badge">Coming Soon</em>
+    </button>
+    <button class="bill-card" data-live="false">
+      <span class="bill-icon">🚗</span> FASTag Recharge <em class="bill-badge">Coming Soon</em>
+    </button>
+    <button class="bill-card" data-live="false">
+      <span class="bill-icon">📄</span> Postpaid Bill <em class="bill-badge">Coming Soon</em>
+    </button>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="how">
+  <h2>Kaise kaam karta hai</h2>
+  <div class="how-steps">
+    <div class="how-step">
+      <span class="how-num">01</span>
+      <h3>Number daalo</h3>
+      <p>Operator chuno aur apna 10-digit mobile number enter karo.</p>
+    </div>
+    <div class="how-step">
+      <span class="how-num">02</span>
+      <h3>Plan chuno</h3>
+      <p>Popular plans mein se pick karo ya khud amount daalo.</p>
+    </div>
+    <div class="how-step">
+      <span class="how-num">03</span>
+      <h3>Turant confirmation</h3>
+      <p>Recharge Now dabao — talktime aur data seconds mein activate.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY US ================= -->
+<section class="why" id="why">
+  <h2>Why JyotiStore</h2>
+  <div class="why-grid">
+    <div class="why-card">
+      <span class="why-icon">⚡</span>
+      <h3>Instant activation</h3>
+      <p>Recharge ke seconds mein hi talktime aur data active ho jaata hai.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🏷️</span>
+      <h3>Best plan prices</h3>
+      <p>Sabhi operators ke plans ek jagah, best value ke saath compare karo.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">💸</span>
+      <h3>Guaranteed cashback</h3>
+      <p>Har recharge par kuch na kuch cashback ya coupon zaroor milta hai.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🔒</span>
+      <h3>100% secure</h3>
+      <p>Aapka number aur payment details hamesha surakshit rehte hain.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="reviews" id="reviews">
+  <h2>Users ki raay</h2>
+  <div class="review-slider">
+    <button class="review-arrow" id="reviewPrev" aria-label="Previous review">‹</button>
+    <div class="review-viewport">
+      <div class="review-track" id="reviewTrack">
+        <div class="review-chit">
+          <p>“Raat ko 11 baje recharge kiya, turant balance aa gaya. Kabhi tension nahi hoti.”</p>
+          <span>— Ramesh, Sikandra</span>
+        </div>
+        <div class="review-chit">
+          <p>“Sabse achi baat — sab operators ek hi app mein, alag alag jaane ki zaroorat nahi.”</p>
+          <span>— Priya, Tajganj</span>
+        </div>
+        <div class="review-chit">
+          <p>“Cashback offers genuine hain, pehle recharge mein hi extra data mila.”</p>
+          <span>— Vikas, Kamla Nagar</span>
+        </div>
+        <div class="review-chit">
+          <p>“BSNL ka plan yahin sabse sasta mila, poore area mein check kiya tha.”</p>
+          <span>— Sunita, Dayal Bagh</span>
+        </div>
+      </div>
+    </div>
+    <button class="review-arrow" id="reviewNext" aria-label="Next review">›</button>
+  </div>
+  <div class="review-dots" id="reviewDots"></div>
+</section>
+
+<!-- ================= APP / NEWSLETTER CTA ================= -->
+<section class="app-cta" id="app">
+  <div class="app-cta-text">
+    <h2>Get the JyotiStore app</h2>
+    <p>Naye offers aur cashback deals seedha apne phone pe paane ke liye email chhodo — launch hote hi sabse pehle bataayenge.</p>
+    <form id="notifyForm" class="notify-form" novalidate>
+      <input type="email" id="notifyEmail" placeholder="aapka-email@example.com" required aria-label="Email address">
+      <button type="submit" class="btn btn-primary">Notify Me</button>
+    </form>
+    <p class="notify-msg" id="notifyMsg" role="status"></p>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq" id="faq">
+  <h2>Poochha Jaane Wale Sawaal</h2>
+  <div class="faq-list" id="faqList">
+    <div class="faq-item">
+      <button class="faq-q">Recharge kitni jaldi activate hota hai? <span>+</span></button>
+      <div class="faq-a"><p>Zyaadatar recharge turant, kuch second ke andar activate ho jaate hain.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Kya sabhi operators available hain? <span>+</span></button>
+      <div class="faq-a"><p>Ji haan — Jio, Airtel, Vi aur BSNL, sabke prepaid plans yahin milte hain.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Payment kaise kar sakte hain? <span>+</span></button>
+      <div class="faq-a"><p>UPI, cards aur wallets — jald hi sabhi payment options available honge.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Agar recharge fail ho jaaye to? <span>+</span></button>
+      <div class="faq-a"><p>Paisa turant refund ho jaata hai — bina kisi kaatauti ke, seedha source account mein.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER (receipt style) ================= -->
+<footer class="site-footer">
+  <div class="receipt">
+    <div class="receipt-top">
+      <div class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="26" height="26">
+          <circle cx="20" cy="20" r="18" fill="var(--volt)"/>
+          <path d="M21 8 L13 22 L19 22 L17 32 L28 17 L21 17 Z" fill="var(--dusk)"/>
+        </svg>
+      </div>
+      <p>JyotiStore.in</p>
+      <p class="receipt-sub">Recharge fast, talk more.</p>
+    </div>
+    <div class="receipt-divider" aria-hidden="true"></div>
+    <div class="receipt-cols">
+      <div>
+        <h4>Explore</h4>
+        <a href="#plans">Plans</a>
+        <a href="#offers">Offers</a>
+        <a href="#billpay">Bill Pay</a>
+        <a href="#reviews">Reviews</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Careers</a>
+        <a href="#">Partner With Us</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:hello@jyotistore.in">hello@jyotistore.in</a>
+        <a href="tel:+911234567890">+91 12345 67890</a>
+        <p class="receipt-address">Agra, Uttar Pradesh</p>
+      </div>
+    </div>
+    <div class="receipt-divider" aria-hidden="true"></div>
+    <p class="receipt-note">Frontend preview — backend &amp; live payment gateway coming soon.</p>
+    <p class="receipt-copy">© <span id="year"></span> JyotiStore.in — Sab rights reserved.</p>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<!-- ================= HISTORY DRAWER ================= -->
+<div class="cart-overlay" id="histOverlay"></div>
+<aside class="cart-drawer" id="histDrawer" aria-label="Recharge history">
+  <div class="cart-header">
+    <h3>Recharge History</h3>
+    <button id="histClose" aria-label="Close history">✕</button>
+  </div>
+  <div class="cart-items" id="histItems">
+    <p class="cart-empty" id="histEmpty">Abhi tak koi recharge nahi hua.</p>
+  </div>
+  <div class="cart-footer">
+    <button class="btn btn-ghost hist-clear" id="histClear">Clear History</button>
+  </div>
+</aside>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
